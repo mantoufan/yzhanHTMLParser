@@ -1,0 +1,13 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: test-claim
+  annotations:
+    nfs.io/storage-path: "test-path" # not required, depending on whether this annotation was shown in the storage class description
+spec:
+  storageClassName: nfs-client
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Mi
