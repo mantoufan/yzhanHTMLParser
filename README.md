@@ -1,6 +1,6 @@
 # yzhanHTMLParser
-![npm](https://img.shields.io/npm/v/yzhanhtmlparser)
-![npm](https://img.shields.io/npm/dt/yzhanhtmlparser)
+[![npm](https://img.shields.io/npm/v/yzhanhtmlparser)](https://www.npmjs.com/package/yzhanhtmlparser)
+[![npm](https://img.shields.io/npm/dt/yzhanhtmlparser)](https://www.npmjs.com/package/yzhanhtmlparser)
 [![GitHub license](https://img.shields.io/github/license/mantoufan/yzhanhtmlparser)](https://github.com/mantoufan/yzhanhtmlparser/blob/main/LICENSE)
 ![coverage](https://img.shields.io/badge/coverage-100%25-green)  
 A streaming HTML parser based on [HTML Standard](https://html.spec.whatwg.org/multipage/parsing.html)  
