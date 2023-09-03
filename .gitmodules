@@ -1,6 +1,0 @@
-[submodule "src/mtfApp"]
-	path = src/mtfApp
-	url = git@mtf.github.com:mantoufan/mtfApp.git
-[submodule "src/mtfCOM"]
-	path = src/mtfCOM
-	url = git@mtf.github.com:mantoufan/mtfCOM.git

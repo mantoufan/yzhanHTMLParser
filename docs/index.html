@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YZhan HTML Parser</title>
+  <link rel="stylesheet" href="./static/prism.css" />
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .main {
+      display: flex;
+      height: 100vh;
+      justify-content: space-between;
+      gap: 1em;
+      background-color: #f7f7f7;
+    }
+
+    .main>div {
+      flex: 1;
+      background-color: #fff;
+    }
+
+    .main>div>div {
+      height: 98.5vh;
+      overflow: auto;
+    }
+
+    .main h2 {
+      margin: 0;
+      height: 1.5vh;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .main code {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <div>
+      <h2>Input HTML Code</h2>
+      <div id="js-code-input">
+        <pre><code class="language-html" contenteditable="true" data-manual>&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;title&gt;Page Name&lt;/title&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1 class=&quot;text&quot; id=a&gt;Hello World&lt;/h1&gt;
+&lt;input type=&quot;button&quot; disabled/&gt;
+&lt;/body&gt;</code></pre>
+      </div>
+    </div>
+    <div>
+      <h2>HTML Parser（Lexical Analyzer）</h2>
+      <div id="lexical-analyzer"></div>
+    </div>
+  </div>
+  <script src="./yzhanhtmlparser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@textea/json-viewer@3"></script>
+  <script src="./static/prism.js"></script>
+  <script src="./static/function.js"></script>
+  <script>
+    function render(target) {
+      var range = saveSelection(target)
+      target.innerHTML = Prism.highlight(target.innerText, Prism.languages.html, 'html')
+      restoreSelection(target, range)
+      var code = target.innerText
+      var expression = yzhanHTMLParser.parse(code)
+      new JsonViewer({
+        value: expression
+      }).render('#lexical-analyzer')
+    }
+    var jsCodeInput = document.getElementById('js-code-input')
+    jsCodeInput.addEventListener('input', debounce(function (e) {
+      render(e.target)
+    }, 2000))
+    render(jsCodeInput.getElementsByTagName('code')[0])
+  </script>
+</body>
+
+</html>
