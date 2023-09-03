@@ -3,6 +3,7 @@ const StringStream = require('./htmlParser/StringStream.class')
 const Collector = require('./htmlParser/Collector.class')
 
 module.exports = {
+  HtmlParser,
   parse(html) {
      const htmlParser = new HtmlParser()
      const stringStream = new StringStream(html)

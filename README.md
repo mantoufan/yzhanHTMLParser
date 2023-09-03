@@ -36,6 +36,16 @@ const code = `<html lang="en">
 ```javascript 
 const parseResult = yzhanHTMLParser.parse(code)
 ```
+### Streaming Usage
+```javascript
+const fs = require('node:fs')
+const htmlParser = new yzhanHTMLParser.HtmlParser()
+/* data.txt: abcde */
+fs.createReadStream('./data.txt').pipe(htmlParser)
+htmlParser.on('data', char => {
+  console.log(char) // a . b . c . d . e
+})
+```
 ## Development
 ### Unit Testing
 ```shell
