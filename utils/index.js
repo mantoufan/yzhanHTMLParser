@@ -20,7 +20,7 @@ const isMatched = tokens => {
   return stack.length === 0
 }
 
-const buildTree = tokens => {
+const buildDOMTree = tokens => {
   const n = tokens.length
   const stack = []
   const map = {
@@ -50,17 +50,28 @@ const buildTree = tokens => {
         elementStack.push(element)
         stack.push(token)
       }
+    } else if (type === 'char') {
+      // Tobe continued
+      const parentElement = elementStack[elementStack.length - 1]
+      if (parentElement.children === void 0) parentElement.children = []
+      if (typeof parentElement.children[parentElement.children.length - 1] === 'string') {
+        parentElement.children[parentElement.children.length - 1] += content
+      } else {
+        parentElement.children.push(content)
+      }
     } else if (stack[stack.length - 1].type === map[type] && stack[stack.length - 1].content === content) {
       stack.pop()
       elementStack.pop()
     } else {
+      console.log(stack)
       return null
     }
   }
+  
   return stack.length === 0 ? root : null
 }
 
 module.exports = {
   isMatched,
-  buildTree
+  buildDOMTree
 }

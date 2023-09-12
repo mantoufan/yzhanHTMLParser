@@ -1,4 +1,4 @@
-const { isMatched, buildTree } = require('../helpers')
+const { isMatched, buildDOMTree } = require('../utils')
 const { parse } = require('../src')
 describe('PushdownAutoStateMachine', () => {
   it('check tag is matched', () => {
@@ -15,10 +15,10 @@ describe('PushdownAutoStateMachine', () => {
     expect(isMatched(tokens)).toBe(true)
   }) 
 
-  it('build tree', () => {
+  it('build DOM tree', () => {
     const tokens = parse(
       '<div class="a"><h1><b class="b"></b><a></a></h1></ div><img/><a></a>'
     )
-    expect(buildTree(tokens)).toEqual({"children": [{"attributes": {"class": "a"}, "children": [{"children": [{"attributes": {"class": "b"}, "tagName": "b", "type": "Element"}, {"tagName": "a", "type": "Element"}], "tagName": "h1", "type": "Element"}], "tagName": "div", "type": "Element"}, {"tagName": "img", "type": "Element"}, {"tagName": "a", "type": "Element"}], "type": "Document"})
+    expect(buildDOMTree(tokens)).toEqual({"children": [{"attributes": {"class": "a"}, "children": [{"children": [{"attributes": {"class": "b"}, "tagName": "b", "type": "Element"}, {"tagName": "a", "type": "Element"}], "tagName": "h1", "type": "Element"}], "tagName": "div", "type": "Element"}, {"tagName": "img", "type": "Element"}, {"tagName": "a", "type": "Element"}], "type": "Document"})
   }) 
 })

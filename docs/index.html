@@ -50,17 +50,22 @@
         <pre><code class="language-html" contenteditable="true" data-manual>&lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
 &lt;title&gt;Page Name&lt;/title&gt;
-&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta charset=&quot;UTF-8&quot;/&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;h1 class=&quot;text&quot; id=a&gt;Hello World&lt;/h1&gt;
 &lt;input type=&quot;button&quot; disabled/&gt;
-&lt;/body&gt;</code></pre>
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
       </div>
     </div>
     <div>
       <h2>HTML Parser（Lexical Analyzer）</h2>
       <div id="lexical-analyzer"></div>
+    </div>
+    <div>
+      <h2>Build DOMTree</h2>
+      <div id="build-domtree"></div>
     </div>
   </div>
   <script src="./yzhanhtmlparser.min.js"></script>
@@ -73,10 +78,12 @@
       target.innerHTML = Prism.highlight(target.innerText, Prism.languages.html, 'html')
       restoreSelection(target, range)
       var code = target.innerText
-      var expression = yzhanHTMLParser.parse(code)
       new JsonViewer({
-        value: expression
+        value: yzhanHTMLParser.parse(code)
       }).render('#lexical-analyzer')
+      new JsonViewer({
+        value: yzhanHTMLParser.buildDOMTree(code)
+      }).render('#build-domtree')
     }
     var jsCodeInput = document.getElementById('js-code-input')
     jsCodeInput.addEventListener('input', debounce(function (e) {

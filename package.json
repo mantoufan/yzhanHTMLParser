@@ -1,6 +1,6 @@
 {
   "name": "yzhanhtmlparser",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A streaming HTML parser based on HTML Standard. 基于 HTML 标准的流式 HTML 解析器",
   "main": "src/index.js",
   "scripts": {
